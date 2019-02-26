@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= "Logowanie"
+    link( rel="Shortcut icon" href="/img/ico/testy-logiczne.ico")
+    link(rel='stylesheet', href='/css/logowanie.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+  body
+  block content
+    div(class="login-wrap")
+      div.form
+        form(action= href , method="post")
+          h1=title
+          input(type="text" placeholder="Login" name="login")
+          input(type="password" placeholder="Hasło" name="pass")
+          p.err=err
+          button="Zaloguj" 
+          a(href="/")
+            p="Zaloguj jako uczeń"

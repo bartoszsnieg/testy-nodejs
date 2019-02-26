@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= "Egzaminy"
+    link( rel="Shortcut icon" href="/img/ico/testy-logiczne.ico")
+    link(rel='stylesheet', href='/css/logowanie.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+  body
+    div(class="login-wrap")
+      div.form
+        form(action="/logowanie", method="post")
+          h1="Logowanie testy"
+          input(type="text" placeholder="Imie i nazwisko" name="name")
+          p.err=err
+          button="Zaloguj" 
+          a(href="/logowanie/administrator")
+            p="Zaloguj jako administrator"

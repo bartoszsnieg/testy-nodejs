@@ -1,0 +1,35 @@
+include ./includes/headAdmin.jade
+        script(src="/js/admin/szukaj.js")
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div.login-wrap
+            div.title-page="Testy"
+            a.button(style="margin-right:20px;" href="/administrator/testy/dodaj")="Dodaj nowy"
+            a.button="Rozpocznij nowy test"
+            br
+            br
+            input#dataS.input(type="text" placeholder="Nazwa testu")
+            spane#buttonS.button="Szukaj"
+            hr
+            br
+            table.tabela1
+                thead(style="width:100%;")
+                    tr
+                        td(style="width:10%;")="Lp."
+                        td(style="width:60%;")="Nazwa"
+                        td(style="width:30%;")="Opcje"
+                tbody#tabelBody
+                    for dane , i in data
+                        tr
+                            td=(i+1)+"."
+                            td=dane.name
+                            td
+                                a.button(style="margin-bottom:5px;" href="/administrator/testy/widok/"+dane.name)="Widok"
+                    else
+                        tr
+                            td=""
+                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testu o nazwie: "+nameT
+                            td=""
+                            
+                    
