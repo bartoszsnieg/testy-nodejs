@@ -66,6 +66,7 @@ if(data.length >0)
   req.session.isAdmin = true;
   req.session.isUser = false;
   req.session.isDebug = false;
+  req.session.name = "Administrator"
   res.redirect("/administrator");
 }
 else

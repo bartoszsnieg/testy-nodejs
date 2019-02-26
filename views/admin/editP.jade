@@ -1,0 +1,55 @@
+include ./includes/headAdmin.jade
+        script(src="/js/admin/konwerterEdit.js")
+        - var a = pytanie.poprawna;
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div#body.login-wrap()
+            div.title-page="Edycja pytania "
+            span#fast.button="Szybkie wprowadzanie"
+            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testName)="Cofnij do testu"
+            br
+            br
+            form(action="/administrator/pytanie/dodaj/"+testName, method="post")
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Treść pytania: "
+                textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)=pytanie.tresc
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz A:"
+                textarea#odpA.input(name="odpA", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi A" required)=pytanie.odpA
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz B:"
+                textarea#odpB.input(name="odpB", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi B" required)=pytanie.odpB
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz C:"
+                textarea#odpC.input(name="odpC", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi C" required)=pytanie.odpC
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz D:"
+                textarea#odpD.input(name="odpD", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi D" required)=pytanie.odpD
+                label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Poprawna odpowiedz: "
+                select#poprawna.input(name="poprawne" required value="3")
+                    option(value="1" selected)="Odpowiedz A"
+                    option(value="2")="Odpowiedz B"
+                    option(value="3")="Odpowiedz C"
+                    option(value="4")="Odpowiedz D"
+                input.button(type="submit", value="Dodaj")
+                script.
+                    document.getElementById("poprawna").value = #{pytanie.poprawna}
+        div#fastBody.login-wrap.disable
+            div.title-page="Szybkie wprowadzanie danych"
+            label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Dane:  "
+            textarea#vKonwert.input(, cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:60vh;min-height:60vh;" placeholder="Wpisz dane" required)
+            label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Poprawna odpowiedz: "
+            select#poprawnaK.input()
+                option(value="1")="Odpowiedz A"
+                option(value="2")="Odpowiedz B"
+                option(value="3")="Odpowiedz C"
+                option(value="4")="Odpowiedz D"
+            br
+            span#konwert.button="Konwertuj"
+            span#close.button(style="margin-left:20px;")="Zamknij"
+    if alert
+        div.blankT
+        div#alert.alert
+            div.title-page="Powiadomienie"
+            span=alert
+            br
+            br
+            span#closeA.button="Zamknij"
+        script(src="/js/admin/powiadomienie.js")
+        

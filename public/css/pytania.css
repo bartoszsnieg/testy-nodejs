@@ -1,0 +1,70 @@
+.pytaniaBody{
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+.pytanie
+{
+    display: block;
+    width: 100%;
+    margin: auto;
+    border-bottom: #000000 1px solid;
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+.numer
+{
+    font-size: 25px;
+}
+div.tresc
+{
+    margin-top: 20px;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.odpBox
+{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    border: #C3D1A3 1px solid;
+    background-color:#F8FAF5;
+    margin-bottom: 10px;
+    
+}
+.odpBox>label
+{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.odpBox>label:first-child
+{
+    margin-top: 15px;
+}
+.odpBox>label>input
+{
+    margin-right: 15px;
+    
+}
+.autor
+{
+    float: right;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.autor>span
+{
+    font-weight: bold;
+}
+.button
+{
+    margin-top: 5px !important;
+}
+.null
+{
+    text-align: center;
+    font-size: 30px;
+    color: #FF0000;
+}

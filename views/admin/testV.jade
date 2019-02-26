@@ -1,0 +1,81 @@
+include ./includes/headAdmin.jade
+        link(rel='stylesheet', href='/css/pytania.css')
+        script(src="/js/admin/szukajP.js")
+    body
+    include ./includes/menuAdmin.jade
+    block content
+    - var names = test.name
+        div.login-wrap
+            div.title-page="Nazwa testu: "+test.name
+            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name)="Rozpocznij"
+            a.button(style="margin-right:20px;" href="/administrator/pytanie/dodaj/"+test.name)="Dodaj pytanie"
+            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name)="Udostępnij dodawanie pytań ucznią"
+            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name)="Usuń test"
+            br
+            br
+            if query
+                input#dataS.input(type="text",placeholder="Treść pytania" value=query)
+            else
+                input#dataS.input(type="text",placeholder="Treść pytania")
+            spane#buttonS.button(href="/administrator/testy/widok/"+test.name)="Szukaj"
+            hr
+            div.title-page(style="border:none;")="Pytania: "
+            div.pytaniaBody
+                for data , i in pytania
+                    div.pytanie
+                        div.numer
+                            |Pytanie
+                            b=" "+(i+1)+" "
+                            |z
+                            b=" "+pytania.length
+                        div.tresc=data.tresc
+                            
+                        div.odpBox
+                            if data.poprawna == 1
+                                label
+                                    input(type="radio", name="odp"+i disabled checked)
+                                    span=data.odpA
+                            else
+                                label
+                                    input(type="radio", name="odp"+i disabled)
+                                    span=data.odpA
+                            if data.poprawna == 2
+                                label
+                                    input(type="radio", name="odp"+i disabled checked)
+                                    span=data.odpB
+                            else
+                                label
+                                    input(type="radio", name="odp"+i disabled)
+                                    span=data.odpB
+                            if data.poprawna == 3
+                                label
+                                    input(type="radio", name="odp"+i disabled checked)
+                                    span=data.odpC
+                            else
+                                label
+                                    input(type="radio", name="odp"+i disabled)
+                                    span=data.odpC
+                            if data.poprawna == 4
+                                label
+                                    input(type="radio", name="odp"+i disabled checked)
+                                    span=data.odpD
+                            else
+                                label
+                                    input(type="radio", name="odp"+i disabled)
+                                    span=data.odpD
+                        br
+                        a.button(style="margin-right:20px;" href="/administrator/pytanie/edytuj/"+data.id)="Edytuj"
+                        a.button(style="margin-right:20px;" href="/administrator/pytanie/usun/"+data.id)="Usuń"
+                        span.autor
+                            |Autor: 
+                            a(href="/administrator/pytania/autor/"+data.autorAdres)=data.autor
+                else
+                    div.null
+                        img(src="/img/error21.png" alert="Brak bytań error")
+                        br
+                        if query
+                            span="Nie ma pytań z słowem: '"+query+"'"
+                        else
+                            span="Nie ma pytań ! "
+                        br
+                        |(Mżesz je dodać klikając przycisk: "Dodaj pytanie")
