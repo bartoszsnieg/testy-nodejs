@@ -5,10 +5,6 @@ include ./includes/headAdmin.jade
     block content
         div.login-wrap
             div.title-page="Wybierz egzamin"
-            input#dataS.input(type="text" placeholder="Nazwa testu")
-            spane#buttonS.button="Szukaj"
-            hr
-            br
             table.tabela1
                 thead(style="width:100%;")
                     tr
@@ -29,6 +25,7 @@ include ./includes/headAdmin.jade
                     else
                         tr
                             td(style="color:#ff0000;font-size:50px;" colspan="4")="Nie znaleziono testów do edycji "
+        div(class="stopka")="© 2019 - Bartosz Śnieg"
 
     if alert
         div.blankT

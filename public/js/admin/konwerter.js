@@ -1,3 +1,4 @@
+//2019 © Bartosz Śnieg
 window.onload = function(){
     console.log("asdA");
 clear();

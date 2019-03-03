@@ -11,22 +11,23 @@ include ./includes/headUczen.jade
             br
             form(action="/uczen/pytanie/dodaj/"+testName, method="post")
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Treść pytania: "
-                textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)
+                textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 98%;min-width: 98%;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz A:"
-                textarea#odpA.input(name="odpA", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi A" required)
+                textarea#odpA.input(name="odpA", cols="30", rows="10" style="max-width: 98%;min-width: 98%;height:10vh;" placeholder="Treść odpowiedzi A" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz B:"
-                textarea#odpB.input(name="odpB", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi B" required)
+                textarea#odpB.input(name="odpB", cols="30", rows="10" style="max-width: 98%;min-width: 98%;height:10vh;" placeholder="Treść odpowiedzi B" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz C:"
-                textarea#odpC.input(name="odpC", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi C" required)
+                textarea#odpC.input(name="odpC", cols="30", rows="10" style="max-width: 98%;min-width: 98%;height:10vh;" placeholder="Treść odpowiedzi C" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz D:"
-                textarea#odpD.input(name="odpD", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;" placeholder="Treść odpowiedzi D" required)
+                textarea#odpD.input(name="odpD", cols="30", rows="10" style="max-width: 98%;min-width: 98%;height:10vh;" placeholder="Treść odpowiedzi D" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Poprawna odpowiedz: "
-                select#poprawna.input(name="poprawne" required)
+                select#poprawna.input(name="poprawne" style="width: 200px;" required)
                     option(value="1")="Odpowiedz A"
                     option(value="2")="Odpowiedz B"
                     option(value="3")="Odpowiedz C"
                     option(value="4")="Odpowiedz D"
-                input.button(type="submit", value="Dodaj")
+                br
+                input.button(type="submit", style="width: 100%;" value="Dodaj")
         div#fastBody.login-wrap.disable
             div.title-page="Szybkie wprowadzanie danych"
             label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Dane:  "
@@ -40,6 +41,7 @@ include ./includes/headUczen.jade
             br
             span#konwert.button="Konwertuj"
             span#close.button(style="margin-left:20px;")="Zamknij"
+        div(class="stopka")="© 2019 - Bartosz Śnieg"
     if alert
         div.blankT
         div#alert.alert

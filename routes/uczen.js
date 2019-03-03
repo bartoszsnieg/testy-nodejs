@@ -1,3 +1,4 @@
+//2019 © Bartosz Śnieg
 var express = require('express');
 const createError = require('http-errors');
 var router = express.Router();

@@ -7,12 +7,14 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
   body
-    div(class="login-wrap")
-      div.form
-        form(action="/logowanie", method="post")
-          h1="Logowanie testy"
-          input(type="text" placeholder="Imie i nazwisko" name="name")
-          p.err=err
-          button="Zaloguj" 
-          a(href="/logowanie/administrator")
-            p="Zaloguj jako administrator"
+    div.body
+      div(class="login-wrap")
+        div.form
+          form(action="/logowanie", method="post")
+            h1="Logowanie testy"
+            input(type="text" placeholder="Imie i nazwisko" name="name")
+            p.err=err
+            button="Zaloguj" 
+            a(href="/logowanie/administrator")
+              p="Zaloguj jako administrator"
+      div(class="stopka")="© 2019 - Bartosz Śnieg"

@@ -27,9 +27,8 @@ include ./includes/headAdmin.jade
                                 a.button(style="margin-bottom:5px;" href="/administrator/testy/widok/"+dane.name)="Widok"
                     else
                         tr
-                            td=""
-                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testu o nazwie: "+nameT
-                            td=""
+                            td(style="color:#ff0000;font-size:50px;" colspan="3")="Nie znaleziono testu o nazwie: "+nameT
+        div(class="stopka")="© 2019 - Bartosz Śnieg"
     if alert
         div.blankT
         div#alert.alert

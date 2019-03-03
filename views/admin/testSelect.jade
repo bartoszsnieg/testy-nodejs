@@ -4,7 +4,9 @@ include ./includes/headAdmin.jade
     block content
         div#body.login-wrap()
             div.title-page="Wybierz ilość pytań"
-            form(action="/administrator/set/test/"+nameTest, method="post")
+            form(action="/administrator/set/test/"+nameTest, method="post" style="margin:auto;")
                 span="Wpisz liczbę z przedziału miedzy 1 a "+maxL
-                input.input(type="number", name="ile" required)
+                br
+                input.input(type="number", name="ile" required style="margin:auto;")
                 input.button(type="submit", value="Rozpocznij")
+        div(class="stopka")="© 2019 - Bartosz Śnieg"

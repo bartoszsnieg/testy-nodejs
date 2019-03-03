@@ -1,3 +1,4 @@
+/*2019 © Bartosz Śnieg*/
 * { box-sizing: border-box; margin: 0; padding:0; }
 
 html {
@@ -7,7 +8,7 @@ html {
 body{
 	min-width: 750px;
 	display: block;
-	
+	width: 100%;
 }
 .nav
 { 
@@ -18,7 +19,8 @@ body{
 	text-align: center;
 	border-top: 1px solid #751b1b;
     border-bottom: 1px solid #751b1b;
-    z-index: 45;
+		z-index: 45;
+		height: auto;
 }
 .nav>ol
 {
@@ -111,7 +113,9 @@ body{
     box-shadow: 3px 3px 10px #333;
 	padding: 15px;
 	margin-top: 20px;
-  }
+
+	}
+
 /*.login-wrap:after{
     content:'';
     position:absolute;
@@ -309,4 +313,14 @@ body{
   }*/
   .disable{
 	  display: none !important;
+	}
+	.stopka
+  {
+   margin-top: 60px;
+   text-align: center;
+   color: #FFFFFF;
+   height: 20px;
+	 width: 100%;
+	 margin-bottom: 20px;
   }
+    

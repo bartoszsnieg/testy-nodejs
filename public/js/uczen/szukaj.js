@@ -1,3 +1,4 @@
+//2019 © Bartosz Śnieg
 window.onload = ()=>{
     $("#buttonS").on("click",()=>{
         if(document.getElementById("dataS").value !="")

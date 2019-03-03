@@ -2,13 +2,15 @@ include ./includes/headAdmin.jade
     body
     include ./includes/menuAdmin.jade
     block content
-        div.login-wrap
-            div.title-page="Dodawanie testu"
-                form(action="/administrator/testy/dodaj", method="post")
-                    input.input(type="text", name="name" required placeholder="Nazwa testu")
-                    textarea.input(name="about", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;"  placeholder="Opis testu")=data
-                    p.err=err
-                    input.button(type="submit", value="Dodaj" style="margin-left: 1%;")
+        div.body
+            div.login-wrap
+                div.title-page="Dodawanie testu"
+                    form(action="/administrator/testy/dodaj", method="post")
+                        input.input(type="text", name="name" required placeholder="Nazwa testu")
+                        textarea.input(name="about", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:10vh;"  placeholder="Opis testu")=data
+                        p.err=err
+                        input.button(type="submit", value="Dodaj" style="margin-left: 1%;")
+        div(class="stopka")="© 2019 - Bartosz Śnieg"
     if alert
         div.blankT
         div#alert.alert
@@ -18,3 +20,4 @@ include ./includes/headAdmin.jade
             br
             span#closeA.button="Zamknij"
         script(src="/js/admin/powiadomienie.js")
+

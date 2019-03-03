@@ -22,10 +22,8 @@ include ./includes/headUczen.jade
                                 a.button(style="margin-bottom:5px;" href="/uczen/egzamin/"+dane.id)="Rozpocznij"
                     else
                         tr
-                            td=""
-                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testów do edycji "
-                            td=""
-                            td=""
+                            td(style="color:#ff0000;font-size:50px;" colspan="4")="Nie znaleziono testów do edycji "
+        div(class="stopka")="© 2019 - Bartosz Śnieg"
     if alert
         div.blankT
         div#alert.alert

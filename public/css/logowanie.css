@@ -1,12 +1,18 @@
 
-
-* { box-sizing: border-box; margin: 0; padding:0; }
+/*2019 © Bartosz Śnieg*/
+* {  margin: 0; padding:0; height: 100%;}
 
 html {
   background: #95a5a6;
   font-family: 'Helvetica Neue', Arial, Sans-Serif;
 }
+.body
+{
+  position: relative;
+  min-height:100%;
+}
   .login-wrap {
+    display: block;
     position: relative;
     margin: 0 auto;
     background: #ecf0f1;
@@ -14,6 +20,8 @@ html {
     border-radius: 5px;
     box-shadow: 3px 3px 10px #333;
     padding: 15px;
+    min-height: 100px;
+    height: auto;
   }
     h2 {
       text-align: center;
@@ -34,8 +42,6 @@ html {
         margin-bottom: 25px;
         height: 40px;
         border-radius: 5px;
-        outline: 0;
-        outline-style: none;
       }
       h1{
           width: 100%;
@@ -114,6 +120,16 @@ html {
     font-size: 20px;
     width: 100%;
     text-align: center;
+  }
+  .stopka
+  {
+   margin-top: 60px;
+   text-align: center;
+   color: #FFFFFF;
+   position: absolute;
+   height: 20px;
+   bottom: 20px;
+   width: 100%;
   }
     
   

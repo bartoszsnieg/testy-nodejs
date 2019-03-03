@@ -1,3 +1,4 @@
+//2019 © Bartosz Śnieg
 window.onload = ()=>{
     let test;
     let last = 0;

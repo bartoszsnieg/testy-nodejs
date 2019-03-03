@@ -1,3 +1,4 @@
+//2019 © Bartosz Śnieg
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -27,8 +28,10 @@ var con =  mysql.createConnection({
     if (!err)
     console.log("Connected!");
     else
+    {
     console.log(err);
-    errorList.error_List.push(new error("Błąd podczas połaczenia z bazą danych\n"+err,"mysql_connect"));
+    errorList.error_List.push(new error("Błąd podczas połaczenia z bazą danych"+err,"mysql_connect"));
+    }
   });
 
 
@@ -70,7 +73,7 @@ var isUser=function(req,res,next)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.engine('html',jade.__express)
-app.use(logger('dev')); //debug mode
+//app.use(logger('dev')); //debug mode
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
