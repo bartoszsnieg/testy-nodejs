@@ -153,7 +153,7 @@ wyniki = list
         let q = req.session.addPError;
         req.session.addPError ="";
         mysql.query("SELECT * FROM `pytania` WHERE `id`="+decodyText(req.params.name),(err,data)=>{
-            console.log(data);
+            //console.log(data);
             if(data.length>0)
             res.render('admin/editP',{name: "Admin",testid: req.params.name,pytanie: data[0],testname: req.params.testname,alert:q});
             else
@@ -276,7 +276,7 @@ wyniki = list
                     query+=",'"+req.body.about+"');"
                     else
                     query+=",NULL);";
-                    console.log(query);
+                   // console.log(query);
                     mysql.query(query,(err,data)=>{
                         if(!err)
                         req.session.addCorecct = "Test został dodany pomyślnie"

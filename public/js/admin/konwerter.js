@@ -1,10 +1,10 @@
 //2019 © Bartosz Śnieg
 window.onload = function(){
-    console.log("asdA");
+    //console.log("asdA");
 clear();
 let data =[];
 $("#fast").on("click",()=>{
-    console.log("click");
+    //console.log("click");
 document.getElementById("body").classList.toggle("disable");
 document.getElementById("fastBody").classList.toggle("disable");
 });
@@ -16,7 +16,7 @@ $("#close").on("click",()=>{
 if(document.getElementById("vKonwert").value != "")
 {
 converrt(document.getElementById("vKonwert").value);
-console.log(data);
+//console.log(data);
 document.getElementById("tresc").value = removeFirstSpace(data[0]);
 document.getElementById("odpA").value = removeFirstSpace(data[1]);
 document.getElementById("odpB").value = removeFirstSpace(data[2]);
