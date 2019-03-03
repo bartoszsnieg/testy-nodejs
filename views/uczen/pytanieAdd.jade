@@ -1,15 +1,15 @@
-include ./includes/headAdmin.jade
-        script(src="/js/admin/konwerter.js")
+include ./includes/headUczen.jade
+    
     body
-    include ./includes/menuAdmin.jade
+    include ./includes/menuUczen.jade
     block content
         div#body.login-wrap()
             div.title-page="Dodawanie pytania do testu: "+testName
             span#fast.button="Szybkie wprowadzanie"
-            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testName)="Cofnij do testu"
+            a.button(style="margin-left:20px;" href="/uczen/testy/edytuj/"+testName)="Cofnij do testu"
             br
             br
-            form(action="/administrator/pytanie/dodaj/"+testName, method="post")
+            form(action="/uczen/pytanie/dodaj/"+testName, method="post")
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Treść pytania: "
                 textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz A:"
@@ -40,13 +40,14 @@ include ./includes/headAdmin.jade
             br
             span#konwert.button="Konwertuj"
             span#close.button(style="margin-left:20px;")="Zamknij"
-if alert
-    div.blankT
-    div#alert.alert
-        div.title-page="Powiadomienie"
-        span=alert
-        br
-        br
-        span#closeA.button="Zamknij"
-    script(src="/js/admin/powiadomienie.js")
+    if alert
+        div.blankT
+        div#alert.alert
+            div.title-page="Powiadomienie"
+            span=alert
+            br
+            br
+            span#closeA.button="Zamknij"
+        script(asyn src="/js/admin/powiadomienie.js")
+    script(src="/js/admin/konwerter.js")
         

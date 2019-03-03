@@ -7,10 +7,10 @@ include ./includes/headAdmin.jade
         div#body.login-wrap()
             div.title-page="Edycja pytania "
             span#fast.button="Szybkie wprowadzanie"
-            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testName)="Cofnij do testu"
+            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testname)="Cofnij do testu"
             br
             br
-            form(action="/administrator/pytanie/dodaj/"+testName, method="post")
+            form(action="/administrator/pytanie/edytuj/"+testname+"/"+testid, method="post")
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Treść pytania: "
                 textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 80%;min-width: 80%;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)=pytanie.tresc
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz A:"
@@ -27,7 +27,7 @@ include ./includes/headAdmin.jade
                     option(value="2")="Odpowiedz B"
                     option(value="3")="Odpowiedz C"
                     option(value="4")="Odpowiedz D"
-                input.button(type="submit", value="Dodaj")
+                input.button(type="submit", value="Zapisz")
                 script.
                     document.getElementById("poprawna").value = #{pytanie.poprawna}
         div#fastBody.login-wrap.disable

@@ -1,0 +1,10 @@
+include ./includes/headAdmin.jade
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div#body.login-wrap()
+            div.title-page="Wybierz ilość pytań"
+            form(action="/administrator/set/test/"+nameTest, method="post")
+                span="Wpisz liczbę z przedziału miedzy 1 a "+maxL
+                input.input(type="number", name="ile" required)
+                input.button(type="submit", value="Rozpocznij")

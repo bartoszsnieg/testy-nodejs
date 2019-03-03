@@ -35,7 +35,7 @@ html {
         height: 40px;
         border-radius: 5px;
         outline: 0;
-        -moz-outline-style: none;
+        outline-style: none;
       }
       h1{
           width: 100%;

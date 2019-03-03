@@ -1,0 +1,37 @@
+include ./includes/headAdmin.jade
+        script(src="/js/admin/szukaj.js")
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div.login-wrap
+            div.title-page="Wyniki"
+            br
+            table.tabela1
+                thead(style="width:100%;")
+                    tr
+                        td(style="width:10%;")="Lp."
+                        td(style="width:40%;")="Nazwa testu"
+                        td(style="width:20%;")="Ilośc odpowiedzi"
+                        td(style="width:10%;" colspan="2")="Opcje"
+                tbody#tabelBody
+                    for dane , i in data
+                        tr
+                            td=(i+1)+"."
+                            td=dane.testName
+                            td=dane.odpowiedzi.length
+                            td
+                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id)="Widok"
+                            td
+                                a.button(style="margin-bottom:5px;" href="/administrator/wynik/dell/"+dane.id)="Usuń"
+                    else
+                        tr
+                            td(style="color:#ff0000;font-size:50px;" colspan="4")="Nie znaleziono wyników "
+    if alert
+        div.blankT
+        div#alert.alert
+            div.title-page="Powiadomienie"
+            span=alert
+            br
+            br
+            span#closeA.button="Zamknij"
+        script(src="/js/admin/powiadomienie.js")

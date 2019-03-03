@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        title= "Administrator"
+        link( rel="Shortcut icon" href="/img/ico/testy-logiczne.ico")
+        link(rel='stylesheet', href='/css/nstyle.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+        script(src="/js/jquery-2.0.3.min.js")
+        link(rel='stylesheet', href='/css/logowanie.css')
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div(class="login-wrap")
+            div.form
+                form(action="/administrator/zmien/haslo" , method="post")
+                    h1="Zmiana hasła"
+                    input.input(type="text" placeholder="Login" name="login")
+                    input(type="password" placeholder="Obecne hasło" name="pass" )
+                    input(type="password" placeholder="Nowe hasło" name="newPass" )
+                    p.err=err
+                    button="Zmień" 
+    if alert
+        div.blankT
+        div#alert.alert
+            div.title-page="Powiadomienie"
+            span=alert
+            br
+            br
+            span#closeA.button="Zamknij"
+        script(src="/js/admin/powiadomienie.js")

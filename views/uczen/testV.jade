@@ -1,27 +1,20 @@
-include ./includes/headAdmin.jade
+include ./includes/headUczen.jade
         link(rel='stylesheet', href='/css/pytania.css')
-        script(src="/js/admin/szukajP.js")
+        script(src="/js/uczen/szukajP.js")
     body
-    include ./includes/menuAdmin.jade
+    include ./includes/menuUczen.jade
     block content
     
         div.login-wrap
             div.title-page="Nazwa testu: "+test.name
-            if test.ile != 0
-                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/"+test.name)="Rozpocznij"
-            a.button(style="margin-right:20px;" href="/administrator/pytanie/dodaj/"+test.name)="Dodaj pytanie"
-            if test.edit == 0
-                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/true")="Udostępnij dodawanie pytań ucznią"
-            else
-                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/false")="Zablokuj dodawanie pytań ucznią"
-            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name)="Usuń test"
-            br
+            a.button(style="margin-right:20px;" href="/uczen/pytanie/dodaj/"+test.name)="Dodaj pytanie"
+            div(style="clear:both;")
             br
             if query
                 input#dataS.input(type="text",placeholder="Treść pytania" value=query)
             else
                 input#dataS.input(type="text",placeholder="Treść pytania")
-            spane#buttonS.button(href="/administrator/testy/widok/"+test.name)="Szukaj"
+            spane#buttonS.button(href="/uczen/testy/widok/"+test.name)="Szukaj"
             hr
             div.title-page(style="border:none;")="Pytania: "
             div.pytaniaBody
@@ -67,12 +60,10 @@ include ./includes/headAdmin.jade
                                 label
                                     input(type="radio", name="odp"+i disabled)
                                     span=data.odpD
-                        br
-                        a.button(style="margin-right:20px;" href="/administrator/pytanie/edytuj/"+test.name+"/"+data.id)="Edytuj"
-                        a.button(style="margin-right:20px;" href="/administrator/pytanie/usun/"+test.name+"/"+data.id)="Usuń"
+                        
                         span.autor
                             |Autor: 
-                            a(href="/administrator/pytania/autor/"+data.autorAdres)=data.autor
+                            a()=data.autor
                         div(style="clear:both;")
                 else
                     div.null

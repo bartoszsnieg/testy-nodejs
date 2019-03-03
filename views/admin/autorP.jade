@@ -1,0 +1,61 @@
+include ./includes/headAdmin.jade
+        link(rel='stylesheet', href='/css/pytania.css')
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div.login-wrap
+                div.title-page(style="border:none;margin-bottom:30px;")="Pytania autorstwa: "+autor
+                div.pytaniaBody
+                    for data , i in pytania
+                        div.pytanie
+                            div.numer
+                                |Pytanie z testu o nazwie:
+                                b=" "+data.name
+                            div.tresc=data.tresc
+                                
+                            div.odpBox
+                                if data.poprawna == 1
+                                    label
+                                        input(type="radio", name="odp"+i disabled checked)
+                                        span=data.odpA
+                                else
+                                    label
+                                        input(type="radio", name="odp"+i disabled)
+                                        span=data.odpA
+                                if data.poprawna == 2
+                                    label
+                                        input(type="radio", name="odp"+i disabled checked)
+                                        span=data.odpB
+                                else
+                                    label
+                                        input(type="radio", name="odp"+i disabled)
+                                        span=data.odpB
+                                if data.poprawna == 3
+                                    label
+                                        input(type="radio", name="odp"+i disabled checked)
+                                        span=data.odpC
+                                else
+                                    label
+                                        input(type="radio", name="odp"+i disabled)
+                                        span=data.odpC
+                                if data.poprawna == 4
+                                    label
+                                        input(type="radio", name="odp"+i disabled checked)
+                                        span=data.odpD
+                                else
+                                    label
+                                        input(type="radio", name="odp"+i disabled)
+                                        span=data.odpD
+                            br
+                            a.button(style="margin-right:20px;" href="/administrator/testy/widok/"+data.name)="Pokaż test"
+                            a.button(style="margin-right:20px;" href="/administrator/pytanie/edytuj/"+data.name+"/"+data.id)="Edytuj"
+                            a.button(style="margin-right:20px;" href="/administrator/pytanie/usun/"+data.name+"/"+data.id)="Usuń"
+                            span.autor
+                                |Autor:
+                                b
+                                    a()=" "+data.autor
+                    else
+                        div.null
+                            img(src="/img/error21.png" alert="Brak bytań error")
+                            br
+                            span="Nie ma pytań tego autora! "

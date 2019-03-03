@@ -1,0 +1,38 @@
+include ./includes/headUczen.jade
+    link(rel='stylesheet', href='/css/pytania.css')
+    script(src="/js/uczen/egzamin.js")
+    body
+    include ./includes/menuUczen.jade
+    block content
+        div#body.disable
+            div.title-page="Egzamin"
+            div#nuberBody.nuberList
+                ol#number
+                    li.wpProQuiz_reviewQuestionTarget="1"
+            div#wyniki.wyniki.disable
+                span="Zdobyłeś:"
+                    span#punkty=" 10 "
+                    | z
+                    span#punktyMax=" 10 "+""
+                    |punktów, 
+                    span#procent="(100%)"
+                br
+                button.button#all(style="width:200px;")="Pokaż pytania"
+                a(href="/uczen/testy/aktualne" style="float: left;margin-top: 85px; margin-left:20px;")
+                    button.button#all(style="width:200px;")="Wyjdź"
+                div(style="clear:both;")
+            div#pytanieBody.pytaniaBody=""
+            button.button#back(style="width:200px;margin-left:20px;")="Poprzednie pytanie"
+            button.button#next(style="float:right; width:200px; margin-right:20px;")="Następne pytanie"
+            button.button#end(style="float:right; width:200px; margin-right:20px;" class="disable")="Koniec testu"
+            div(style="clear:both;")
+                
+    if alert
+        div.blankT
+        div#alert.alert
+            div.title-page="Powiadomienie"
+            span=alert
+            br
+            br
+            span#closeA.button="Zamknij"
+        script(src="/js/admin/powiadomienie.js")

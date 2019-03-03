@@ -1,13 +1,10 @@
 include ./includes/headAdmin.jade
-        script(src="/js/admin/szukaj.js")
+        script(src="/js/uczen/szukaj.js")
     body
     include ./includes/menuAdmin.jade
     block content
         div.login-wrap
-            div.title-page="Testy"
-            a.button(style="margin-right:20px;" href="/administrator/testy/dodaj")="Dodaj nowy"
-            br
-            br
+            div.title-page="Wybierz egzamin"
             input#dataS.input(type="text" placeholder="Nazwa testu")
             spane#buttonS.button="Szukaj"
             hr
@@ -16,20 +13,23 @@ include ./includes/headAdmin.jade
                 thead(style="width:100%;")
                     tr
                         td(style="width:10%;")="Lp."
-                        td(style="width:60%;")="Nazwa"
-                        td(style="width:30%;")="Opcje"
+                        td(style="width:50%;")="Nazwa testu"
+                        td(style="width:10%;")="Ilość pytań"
+                        td(style="width:10%;" colspan="2")="Opcje"
                 tbody#tabelBody
                     for dane , i in data
                         tr
                             td=(i+1)+"."
                             td=dane.name
+                            td=dane.ilosc_pytan
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/testy/widok/"+dane.name)="Widok"
+                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id)="Wyniki"
+                            td
+                                a.button(style="margin-bottom:5px;" href="/administrator/egzamin/dell/"+dane.id)="Zakończ"
                     else
                         tr
-                            td=""
-                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testu o nazwie: "+nameT
-                            td=""
+                            td(style="color:#ff0000;font-size:50px;" colspan="4")="Nie znaleziono testów do edycji "
+
     if alert
         div.blankT
         div#alert.alert
@@ -39,5 +39,3 @@ include ./includes/headAdmin.jade
             br
             span#closeA.button="Zamknij"
         script(src="/js/admin/powiadomienie.js")
-                            
-                    

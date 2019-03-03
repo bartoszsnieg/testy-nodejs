@@ -1,7 +1,9 @@
-window.onload =()=>{
+window.onload = function(){
+    console.log("asdA");
 clear();
 let data =[];
 $("#fast").on("click",()=>{
+    console.log("click");
 document.getElementById("body").classList.toggle("disable");
 document.getElementById("fastBody").classList.toggle("disable");
 });
@@ -19,7 +21,10 @@ document.getElementById("odpA").value = removeFirstSpace(data[1]);
 document.getElementById("odpB").value = removeFirstSpace(data[2]);
 document.getElementById("odpC").value = removeFirstSpace(data[3]);
 document.getElementById("odpD").value = removeFirstSpace(data[4]);
-document.getElementById("poprawna").value = document.getElementById('poprawnaK').value
+document.getElementById("poprawna").value = document.getElementById('poprawnaK').value;
+document.getElementById("body").classList.toggle("disable");
+document.getElementById("fastBody").classList.toggle("disable");
+document.getElementById("vKonwert").value = "";
 }else
 {
     alert("Nie wpisano danych do konwersji!");

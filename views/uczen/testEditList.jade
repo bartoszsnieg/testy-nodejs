@@ -1,13 +1,10 @@
-include ./includes/headAdmin.jade
-        script(src="/js/admin/szukaj.js")
+include ./includes/headUczen.jade
+        script(src="/js/uczen/szukaj.js")
     body
-    include ./includes/menuAdmin.jade
+    include ./includes/menuUczen.jade
     block content
         div.login-wrap
             div.title-page="Testy"
-            a.button(style="margin-right:20px;" href="/administrator/testy/dodaj")="Dodaj nowy"
-            br
-            br
             input#dataS.input(type="text" placeholder="Nazwa testu")
             spane#buttonS.button="Szukaj"
             hr
@@ -24,11 +21,11 @@ include ./includes/headAdmin.jade
                             td=(i+1)+"."
                             td=dane.name
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/testy/widok/"+dane.name)="Widok"
+                                a.button(style="margin-bottom:5px;" href="/uczen/testy/widok/"+dane.name)="Widok"
                     else
                         tr
                             td=""
-                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testu o nazwie: "+nameT
+                            td(style="color:#ff0000;font-size:50px;")="Nie znaleziono testów do edycji "
                             td=""
     if alert
         div.blankT
@@ -39,5 +36,3 @@ include ./includes/headAdmin.jade
             br
             span#closeA.button="Zamknij"
         script(src="/js/admin/powiadomienie.js")
-                            
-                    

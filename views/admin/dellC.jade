@@ -1,0 +1,12 @@
+include ./includes/headAdmin.jade
+        
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div.blankT
+        div.alert
+            div.title-page=title
+            form(action=adress, method="post")
+                input.button(type="submit", value="Usuń" style="width:40%;")
+                a(href=cadres style="text-decoration: none;" )
+                    input.button(type="button",style="width:40%; margin-left:20%;" value="Anuluj")
