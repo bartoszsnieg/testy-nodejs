@@ -259,12 +259,14 @@ body{
 	z-index: 1000;
 	position: absolute;
 	top: 25%;
-	right: 40%;
+	left: 40%;
 	background: #ecf0f1;
 	width: 20%;
     border-radius: 5px;
     box-shadow: 3px 3px 10px #333;
 	padding: 15px;
+	height: auto;
+	min-width: 400px;
   }
 .alert:after{
     content:'';
