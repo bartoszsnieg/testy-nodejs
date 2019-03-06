@@ -30,6 +30,7 @@ window.onload = ()=>{
         $("#pytanieBody").html(q);
         $("#body").removeClass("disable");
         $("#body").addClass("login-wrap");
+        setActive(0);
         for(let i=0;i<nuberList.getElementsByTagName("li").length;i++)
 {
     nuberList.getElementsByTagName("li")[i].addEventListener("click",function(event){
@@ -133,8 +134,9 @@ function cPytanie(pytanie,nr,max)
     q ="<div class='pytanie disable'>";
     q+="<div class='numer'><b> "+nr+" </b>z<b> "+max+" </b></div>"
     q+="<div class='tresc'>"+pytanie.pytanie+"</div>"
-    if(pytanie.imgSrc != "Brak")
-        q+"<div class='img'><img src='/testy-img/"+pytanie.imgSrc+"'></div>" 
+    console.log(pytanie.img);
+    if(pytanie.img != "Brak")
+    q+="<div class='img'><img src='/testy-img/"+pytanie.img+"'></div>" 
     q+="<div class='odpBox'>"
     for(let a = 0;a<tabela.length;a++)
         q+=tabela[a];
