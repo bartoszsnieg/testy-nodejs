@@ -26,7 +26,9 @@ include ./includes/headUczen.jade
                             |z
                             b=" "+pytania.length
                         div.tresc=data.tresc
-                            
+                        div.img
+                            if data.imgSrc != "Brak"
+                                img(src="/testy-img/"+data.imgSrc, alt="")
                         div.odpBox
                             if data.poprawna == 1
                                 label

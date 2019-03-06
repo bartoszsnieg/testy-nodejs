@@ -3,6 +3,7 @@ var express = require('express');
 const createError = require('http-errors');
 var router = express.Router();
 let error =  require("../class/error.js");
+const  { fork }  = require('child_process');
 let eventList;
 let mysql;
 let testList =[];
@@ -176,14 +177,25 @@ router.post("/uczen/pytanie/dodaj/:name",(req,res)=>{
                     if(data.length == 0)
                     {
                         let query = "INSERT INTO `pytania`(`id`, `id_testu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgW`, `imgH`, `imgSrc`, `autor`, `autorAdres`) VALUES "
-                        query+="(NULL,"+id+",'"+req.body.tresc+"','"+req.body.odpA+"','"+req.body.odpB+"','"+req.body.odpC+"','"+req.body.odpD+"',"+req.body.poprawne+",NULL,NULL,NULL,'"+req.session.name+"','"+convertToadress(req.session.name)+"')";
+                        query+="(NULL,"+id+",'"+req.body.tresc+"','"+req.body.odpA+"','"+req.body.odpB+"','"+req.body.odpC+"','"+req.body.odpD+"',"+req.body.poprawne+",0,0,'Brak','"+req.session.name+"','"+convertToadress(req.session.name)+"')";
                         mysql.query(query,(err,data)=>{
                             if(!err)
                             {   mysql.query("UPDATE `testy` SET `ile`=`ile`+1 WHERE `id`="+id,(err,data)=>{
                                     req.session.addPError = "Pytanie zostało dodane pomyślnie!";
                                     res.redirect("/uczen/pytanie/dodaj/"+req.params.name); 
                                 });
-                               
+                                if(req.body.img != "")
+                                {
+                                    const process = fork('./routes/pobieranie.js');
+                                    process.send({nameFile:req.params.name+"-"+data.insertId,adress: req.body.img,pytanieId:data.insertId});
+                                    process.on('message', (message) => {
+                                        let query = "UPDATE `pytania` SET `imgW`="+message.imgW+",`imgH`="+message.imgH+",`imgSrc`='"+message.nameFile+"' WHERE `id`="+data.insertId;
+                                        mysql.query(query,(err,data)=>{
+                                            if(err)
+                                            eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - Uczeń: (dodawanie img do zdjęcia)"+req.url));
+                                        })
+                                    });
+                                }
                             }else
                             {
                                 req.session.addPError = "Coś poszło nie tak!!";

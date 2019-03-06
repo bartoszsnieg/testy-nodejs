@@ -5,6 +5,7 @@ var router = express.Router();
 let error =  require("../class/error.js");
 let test = require("../class/test.js");
 let pytanie = require("../class/pytanieClass.js");
+const  { fork }  = require('child_process');
 let LocalID =1;
 let testList =[];
 //const mysql = require("../class/mysql.js").init();
@@ -319,14 +320,26 @@ wyniki = list
                     if(data.length == 0)
                     {
                         let query = "INSERT INTO `pytania`(`id`, `id_testu`, `tresc`, `odpA`, `odpB`, `odpC`, `odpD`, `poprawna`, `imgW`, `imgH`, `imgSrc`, `autor`, `autorAdres`) VALUES "
-                        query+="(NULL,"+id+",'"+req.body.tresc+"','"+req.body.odpA+"','"+req.body.odpB+"','"+req.body.odpC+"','"+req.body.odpD+"',"+req.body.poprawne+",NULL,NULL,NULL,'"+req.session.name+"','"+convertToadress(req.session.name)+"')";
+                        query+="(NULL,"+id+",'"+req.body.tresc+"','"+req.body.odpA+"','"+req.body.odpB+"','"+req.body.odpC+"','"+req.body.odpD+"',"+req.body.poprawne+",0,0,'Brak','"+req.session.name+"','"+convertToadress(req.session.name)+"')";
                         mysql.query(query,(err,data)=>{
                             if(!err)
-                            {   mysql.query("UPDATE `testy` SET `ile`=`ile`+1 WHERE `id`='"+id,(err,data)=>{
+                            {   mysql.query("UPDATE `testy` SET `ile`=`ile`+1 WHERE `id`="+id,(err,data)=>{
                                    // console.log("UPDATE `testy` SET `ile`=`ile`+1 WHERE `name`='"+req.params.name+"'")
                                     req.session.addPError = "Pytanie zostało dodane pomyślnie!";
-                                    res.redirect("/administrator/testy/widok/"+req.params.name); 
+                                    res.redirect("/administrator/pytanie/dodaj/"+req.params.name); 
                                 });
+                                if(req.body.img != "")
+                                {
+                                    const process = fork('./routes/pobieranie.js');
+                                    process.send({nameFile:req.params.name+"-"+data.insertId,adress: req.body.img,pytanieId:data.insertId});
+                                    process.on('message', (message) => {
+                                        let query = "UPDATE `pytania` SET `imgW`="+message.imgW+",`imgH`="+message.imgH+",`imgSrc`='"+message.nameFile+"' WHERE `id`="+data.insertId;
+                                        mysql.query(query,(err,data)=>{
+                                            if(err)
+                                            eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator: (dodawanie img do zdjęcia)"+req.url));
+                                        })
+                                    });
+                                }
                                
                             }else
                             {
@@ -396,7 +409,7 @@ wyniki = list
                     mysql.query("DELETE FROM `pytania` WHERE `id`="+decodyText(req.params.pytanie)+" AND `id_testu`="+id,(err,data)=>{
                         if(!err)
                         {
-                            mysql.query("UPDATE `testy` SET `ile`=`ile`-1 WHERE `name`="+req.params.name,(err,data)=>{
+                            mysql.query("UPDATE `testy` SET `ile`=`ile`-1 WHERE `name`='"+req.params.name+"'",(err,data)=>{
                                 req.session.addPError = "Pytanie zostało usunięte pomyślnie!";
                                 res.redirect("/administrator/testy/widok/"+req.params.testname); 
                             });

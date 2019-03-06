@@ -133,6 +133,8 @@ function cPytanie(pytanie,nr,max)
     q ="<div class='pytanie disable'>";
     q+="<div class='numer'><b> "+nr+" </b>z<b> "+max+" </b></div>"
     q+="<div class='tresc'>"+pytanie.pytanie+"</div>"
+    if(pytanie.imgSrc != "Brak")
+        q+"<div class='img'><img src='/testy-img/"+pytanie.imgSrc+"'></div>" 
     q+="<div class='odpBox'>"
     for(let a = 0;a<tabela.length;a++)
         q+=tabela[a];
