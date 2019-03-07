@@ -15,10 +15,10 @@ http.request(url, function(response) {
 
   response.on('end', function() {                                             
     fs.writeFileSync("./public/testy-img/"+filename, data.read());
-    return                              
+                              
   })                                                                        
 }).end(()=>{ 
-  //return sizeOf(filename);
+  
 });
     
 }
@@ -54,4 +54,4 @@ process.on('message', async (message) => {
     //const size =  sizeOf("./public/testy-img/"+filename); 
     // send response to master process
     process.send({nameFile:  message.nameFile+"."+a(message.adress),imgW:0,imgH:0,pytanieId: message.pytanieId});
-  })
+  });

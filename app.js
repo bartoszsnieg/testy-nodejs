@@ -53,7 +53,7 @@ var isAdmin=function(req,res,next)
   }
   else
   {
-    console.log("Brak uprawnień!");
+    //console.log("Brak uprawnień!");
     res.redirect("/");
   }
 }
@@ -161,7 +161,7 @@ app.post("/login/debug",(req,res)=>{
     req.session.isAdmin = false;
     req.session.isUser = false;
     req.session.isDebug = true;
-    req.session.name = "Administrator"
+    req.session.name = "DEBUG"
     res.redirect("/debug/Panel");
     errorList.event_List.push(new error(""+getIP(req),"Logowanie DEBUG"))
   }

@@ -333,7 +333,7 @@ wyniki = list
                                     const process = fork('./routes/pobieranie.js');
                                     process.send({nameFile:req.params.name+"-"+data.insertId,adress: req.body.img,pytanieId:data.insertId});
                                     process.on('message', (message) => {
-                                        let query = "UPDATE `pytania` SET `imgW`="+message.imgW+",`imgH`="+message.imgH+",`imgSrc`='"+message.nameFile+"' WHERE `id`="+data.insertId;
+                                        let query = "UPDATE `pytania` SET `imgW`="+message.imgW+",`imgH`="+message.imgH+",`imgSrc`='"+message.nameFile+"' WHERE `id`="+message.pytanieId;
                                         mysql.query(query,(err,data)=>{
                                             if(err)
                                             eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator: (dodawanie img do zdjęcia)"+req.url));
@@ -409,7 +409,8 @@ wyniki = list
                     mysql.query("DELETE FROM `pytania` WHERE `id`="+decodyText(req.params.pytanie)+" AND `id_testu`="+id,(err,data)=>{
                         if(!err)
                         {
-                            mysql.query("UPDATE `testy` SET `ile`=`ile`-1 WHERE `name`='"+req.params.name+"'",(err,data)=>{
+                            mysql.query("UPDATE `testy` SET `ile`=`ile`-1 WHERE `name`='"+req.params.testname+"'",(err,data)=>{
+                                //console.log(err);
                                 req.session.addPError = "Pytanie zostało usunięte pomyślnie!";
                                 res.redirect("/administrator/testy/widok/"+req.params.testname); 
                             });
