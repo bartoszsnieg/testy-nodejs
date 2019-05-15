@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= "Egzaminy"
+    link( rel="Shortcut icon" href="/img/ico/testy-logiczne.ico")
+    link(rel='stylesheet', href='/css/logowanie.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+  body
+    div.body
+      div(class="login-wrap")
+        div.form
+          form(action="/guestmode", method="post")
+            h1="Testy tryb gościa"
+            input(type="text" placeholder="Imie / nick " name="name")
+            p.err=err
+            button="Rozpocznij" 
+            //a(href="/logowanie/administrator")
+            //p="Zaloguj jako administrator"
+      div(class="stopka")="© 2019 - Bartosz Śnieg"

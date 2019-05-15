@@ -1,6 +1,6 @@
 
 module.exports = class BodyTest{
-    constructor(id,test_id,ilosc_pytan,name)
+    constructor(id,test_id,ilosc_pytan,name,tr)
     {
         this.name = name
         this.id = id;
@@ -8,5 +8,6 @@ module.exports = class BodyTest{
         this.ilosc_pytan = ilosc_pytan;
         this.pytania = [];
         this.mysql_ID;
+        this.guestMode = tr;
     }
 }

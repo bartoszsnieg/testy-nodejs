@@ -45,6 +45,12 @@ user.setMysql(con);
 user.setList(errorList)
 user.setTesty(testy);
 user.setWyniki(wyniki)
+var guest = require("./routes/guest");
+guest.setMysql(con);
+guest.setList(errorList)
+guest.setTesty(testy);
+guest.setWyniki(wyniki)
+
 var isAdmin=function(req,res,next)
 {
   if((req.session.isLogin == true && req.session.isAdmin == true && req.session.name)||(req.session.isLogin == true && req.session.isDebug == true && req.session.name))
@@ -67,6 +73,18 @@ var isUser=function(req,res,next)
   {
    // console.log("Brak uprawnień!");
     res.redirect("/");
+  }
+}
+var isGuest=function(req,res,next)
+{
+  if((req.session.isLogin == true && req.session.isGuest == true && req.session.name))
+  {
+    return next();
+  }
+  else
+  {
+   // console.log("Brak uprawnień!");
+    res.redirect("/logowanie/guest");
   }
 }
 // view engine setup
@@ -95,6 +113,7 @@ app.get("/wyloguj",(req,res)=>{
   req.session.isLogin = false;
   req.session.isAdmin = false;
   req.session.isUser = false;
+  req.session.isGuest = false;
   req.session.isDebug = false;
   req.session.testID = false;
   req.session.name = ""
@@ -102,6 +121,7 @@ app.get("/wyloguj",(req,res)=>{
 })
 app.all('/administrator*',isAdmin, admin);
 app.all("/uczen*",isUser,user);
+app.all("/guestmode/*",isGuest,guest);
 app.get('/logowanie/:typ',(req,res,next)=>{
   let error = req.session.loginError;
   req.session.loginError = "";
@@ -109,6 +129,8 @@ if(req.params.typ == "administrator")
   res.render('logowanieAdmin',{title: "Logowanie administrator",href: "/login/admin",err : error,typ:"text"});
   else if(req.params.typ == "debug")
   res.render('logowanieAdmin',{title: "Logowanie debug",href: "/login/debug",err : error,typ:"password"});
+ else if(req.params.typ == "guest")
+ res.render('guest/index',{err : error});
  else
  next(createError(404));
 });
@@ -119,6 +141,7 @@ app.post("/logowanie",(req,res)=>{
   req.session.isAdmin = false;
   req.session.isUser = true;
   req.session.isDebug = false;
+  req.session.isGuest = false;
   req.session.name = req.body.name
   res.redirect("/uczen");
   errorList.event_List.push(new error("Nazwa: "+req.body.name,"Logowanie ucznia"))
@@ -127,6 +150,18 @@ app.post("/logowanie",(req,res)=>{
   {
     res.redirect("/");
   }
+});
+
+app.post("/guestmode",(req,res)=>{
+  req.session.name = req.body.name;
+  req.session.isLogin = true;
+  req.session.isAdmin = false;
+  req.session.isUser = false;
+  req.session.isGuest = true;
+  req.session.isDebug = false;
+  req.session.testID = false;
+  res.redirect("/guestmode/egzamin");
+  errorList.event_List.push(new error("Udane "+getIP(req),"Logowanie tryb gościa"))
 });
 
 
@@ -140,6 +175,7 @@ if(data.length >0)
   req.session.isAdmin = true;
   req.session.isUser = false;
   req.session.isDebug = false;
+  req.session.isGuest = false;
   req.session.name = "Administrator"
   res.redirect("/administrator");
   errorList.event_List.push(new error("Udane "+getIP(req),"Logowanie Administrator"))
@@ -161,6 +197,7 @@ app.post("/login/debug",(req,res)=>{
     req.session.isAdmin = false;
     req.session.isUser = false;
     req.session.isDebug = true;
+    req.session.isGuest = false;
     req.session.name = "DEBUG"
     res.redirect("/debug/Panel");
     errorList.event_List.push(new error(""+getIP(req),"Logowanie DEBUG"))

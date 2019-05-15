@@ -229,6 +229,24 @@ wyniki = list
         
     });
 
+    router.get("/administrator/rozpocznij/test/guestmode/:name",(req,res)=>{
+        let q = req.session.error;
+        req.session.error ="";
+        mysql.query("SELECT * FROM `testy` WHERE `name`='"+req.params.name+"'",(err,data)=>{
+            if(!err)
+            {
+                res.render('admin/testSelectGuestmode',{name: "Admin",alert:q,nameTest: req.params.name,maxL: data[0].ile});
+            }
+            else
+            {
+                req.session.testError = "Wystąpił problem podczas komunikacji z bazą danych";
+                res.redirect("/administrator/testy/szukaj"); 
+                eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator 1: "+req.url)); 
+            }
+        });
+        
+    });
+
     router.get("/administrator/wyniki",(req,res)=>{
         let q = req.session.error
         req.session.error = "";
@@ -495,7 +513,7 @@ wyniki = list
             {
                 if(data.length>0)
                 {
-                    testlID = testList.push(new test(LocalID,data[0].id,ilosc,nameTest));
+                    testlID = testList.push(new test(LocalID,data[0].id,ilosc,nameTest,false));
                     testlID--;
                     wyniki.push({id:LocalID++,testName: req.params.name,odpowiedzi:[]});
                     mysql.query("SELECT * FROM `pytania` WHERE `id_testu`="+data[0].id+" ORDER BY rand() LIMIT "+ilosc+";",(err,result)=>{
@@ -532,8 +550,66 @@ wyniki = list
         });
     });
 
+    router.post("/administrator/guestmode/:name",(req,res)=>{
+        let ilosc = req.body.ile;
+        let nameTest = req.params.name;
+        let testlID;
+   
+        mysql.query("SELECT * FROM `testy` WHERE `name`='"+nameTest+"'",(err,data)=>{
+            if(!err)
+            {
+                if(data.length>0)
+                {
+                    for(let i=0;i<testList.length;i++)
+                    {
+                        if(testList[i].guestMode == true)
+                        {
+                            testList.splice(i,1);
+                            break;
+                        }
+                    }
+                    let x = new test(LocalID,data[0].id,ilosc,nameTest,true);
+                    testlID = testList.push(x);
+                    //console.log(testList)
+                    testlID--;
+                    wyniki.push({id:LocalID++,testName: req.params.name,odpowiedzi:[]});
+                    mysql.query("SELECT * FROM `pytania` WHERE `id_testu`="+data[0].id+" ORDER BY rand() LIMIT "+ilosc+";",(err,result)=>{
+                        if(!err)
+                        {
+                            for(let a =0;a<result.length;a++)
+                            {
+                                testList[testlID].pytania.push(new pytanie(result[a].id,a+1,result[a].tresc,result[a].odpA,result[a].odpB,result[a].odpC,result[a].odpD,result[a].imgSrc,result[a].poprawna,result[a].imgW,result[a].imgH))
+                            }
+                            res.redirect("/administrator/wyniki/"+testList[testlID].id);
+                            eventList.event_List.push(new error("Dodano nowy test do aktualnych","Testy - administrator: "+req.url)); 
+                        }
+                        else
+                        {
+                            req.session.testError = "Wystąpił problem podczas komunikacji z bazą danych";
+                            res.redirect("/administrator/testy/szukaj"); 
+                            eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator 1: "+req.url)); 
+                        }
+                    });
+                }
+                else
+                {
+                    req.session.testError = "Nie istnieje taki test!";
+                    res.redirect("/administrator/testy/szukaj"); 
+                }
+
+            }
+            else
+            {
+                req.session.testError = "Wystąpił problem podczas komunikacji z bazą danych";
+                res.redirect("/administrator/testy/szukaj"); 
+                eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator 1: "+req.url)); 
+            }
+        });
+    });
+
+
     router.post("/administrator/get/wyniki",(req,res)=>{
-        console.log(wyniki)
+       // console.log(wyniki)
         res.json(getWynik(req.session.testID));
     })
 

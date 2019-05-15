@@ -1,0 +1,12 @@
+include ./includes/headAdmin.jade
+    body
+    include ./includes/menuAdmin.jade
+    block content
+        div#body.login-wrap()
+            div.title-page="Wybierz ilość pytań"
+            form(action="/administrator/guestmode/"+nameTest, method="post" style="margin:auto;")
+                span="Wpisz liczbę z przedziału miedzy 1 a "+maxL
+                br
+                input.input(type="number", name="ile" required style="margin:auto;")
+                input.button(type="submit", value="Rozpocznij")
+        div(class="stopka")="© 2019 - Bartosz Śnieg"

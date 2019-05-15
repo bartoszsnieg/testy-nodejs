@@ -9,6 +9,8 @@ include ./includes/headAdmin.jade
             div.title-page="Nazwa testu: "+test.name
             if test.ile != 0
                 a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/"+test.name)="Rozpocznij"
+            if test.ile != 0
+                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/guestmode/"+test.name)="Rozpocznij test w trybie gościa"
             a.button(style="margin-right:20px;" href="/administrator/pytanie/dodaj/"+test.name)="Dodaj pytanie"
             if test.edit == 0
                 a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/true")="Udostępnij dodawanie pytań ucznią"
