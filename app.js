@@ -8,6 +8,7 @@ const app = express();
 const http = require('http').Server(app);
 const jade = require('jade');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 var mysql = require('mysql');
 const session = require('express-session');
 var getIP = require('ipware')().get_ip;
@@ -24,6 +25,8 @@ var con =  mysql.createConnection({
     charset: 'utf8',
     debug: false
   });
+  var c = false;
+  
   con.connect(function(err) {
     if (!err)
     console.log("Connected!");
@@ -34,7 +37,7 @@ var con =  mysql.createConnection({
     }
   });
 
-
+  app.use(fileUpload());
 var admin = require("./routes/admin");
 admin.setMysql(con)
 admin.setList(errorList)
@@ -214,7 +217,7 @@ res.json(errorList)
   });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.redirect("/");
   errorList.error_List.push(new error("nie znaleziono strony: "+req.url,"Not faound"))
 });
 

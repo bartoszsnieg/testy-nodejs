@@ -20,9 +20,9 @@ include ./includes/headAdmin.jade
                             td=dane.testName
                             td=dane.odpowiedzi.length
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id)="Widok"
+                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id data-toggle="tooltip" tooltip-text="Otwiera stronę z szczegułowymi wynikami")="Widok"
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/wynik/dell/"+dane.id)="Usuń"
+                                a.button(style="margin-bottom:5px;" href="/administrator/wynik/dell/"+dane.id data-toggle="tooltip" tooltip-text="Usuwa wszystkie wyniki z danej sesji")="Usuń"
                     else
                         tr
                             td(style="color:#ff0000;font-size:50px;" colspan="4")="Nie znaleziono wyników "

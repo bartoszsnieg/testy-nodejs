@@ -19,9 +19,9 @@ include ./includes/headAdmin.jade
                             td=dane.name
                             td=dane.ilosc_pytan
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id)="Wyniki"
+                                a.button(style="margin-bottom:5px;" href="/administrator/wyniki/"+dane.id data-toggle="tooltip" tooltip-text="Otwiera stronę z wynikami z danej sesji")="Wyniki"
                             td
-                                a.button(style="margin-bottom:5px;" href="/administrator/egzamin/dell/"+dane.id)="Zakończ"
+                                a.button(style="margin-bottom:5px;" href="/administrator/egzamin/dell/"+dane.id data-toggle="tooltip" tooltip-text="Kończy możliwość rozwiązywania egzaminów z danej sesji")="Zakończ"
                     else
                         tr
                             td(style="color:#ff0000;font-size:50px;" colspan="4")="Brak rozpoczętych testów "

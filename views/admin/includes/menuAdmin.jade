@@ -1,9 +1,10 @@
 div.nav
-    span="Witaj " + name + " !"
+    span#mainWindow="Witaj " + name + " !"
         
     ol
     
-        
+        li
+            a(href="/administrator")="Strona główna"
         li
             a()="Profil"
             ul
@@ -20,6 +21,7 @@ div.nav
             a(href="/administrator/wyniki")="Wyniki"
         li
             a(href="/wyloguj")="Wyloguj"
+    srcipt(src="/js/menu.js")
 
 
                               

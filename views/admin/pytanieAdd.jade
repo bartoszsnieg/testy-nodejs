@@ -5,11 +5,11 @@ include ./includes/headAdmin.jade
     block content
         div#body.login-wrap()
             div.title-page="Dodawanie pytania do testu: "+testName
-            span#fast.button="Szybkie wprowadzanie"
-            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testName)="Cofnij do testu"
+            span#fast.button(data-toggle="tooltip" tooltip-text="Szybkie wklejanie pytań z strony kwalifikacja w zawodzie")="Szybkie wprowadzanie"
+            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testName data-toggle="tooltip" tooltip-text="Wraca do strony testu")="Cofnij do testu"
             br
             br
-            form(action="/administrator/pytanie/dodaj/"+testName, method="post")
+            form(action="/administrator/pytanie/dodaj/"+testName, method="post" encType="multipart/form-data")
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Treść pytania: "
                 textarea#tresc.input(name="tresc", cols="30", rows="10" style="max-width: 98%;min-width: 98%;;height:20vh;min-height:20vh;" placeholder="Treść pytania" required)
                 label(style="display:block; margin-bottom:10px;font-size:20px; margin-left:20px;")="Odpowiedz A:"
@@ -26,7 +26,8 @@ include ./includes/headAdmin.jade
                     option(value="2")="Odpowiedz B"
                     option(value="3")="Odpowiedz C"
                     option(value="4")="Odpowiedz D"
-                input.input(type="text", name="img" placeholder="Adres zdjęcia do pytania (alternatywne)")
+                input.input(type="text", name="img",style="width:50%;" placeholder="Adres zdjęcia do pytania (alternatywne)")
+                input.input(type="file",style="width:30%;" ,name="img2" placeholder="Adres zdjęcia do pytania (alternatywne)")
                 input.button(type="submit", style="width:100%;" value="Dodaj")
         div#fastBody.login-wrap.disable
             div.title-page="Szybkie wprowadzanie danych"

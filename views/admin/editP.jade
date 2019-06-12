@@ -6,8 +6,8 @@ include ./includes/headAdmin.jade
     block content
         div#body.login-wrap()
             div.title-page="Edycja pytania "
-            span#fast.button="Szybkie wprowadzanie"
-            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testname)="Cofnij do testu"
+            span#fast.button(data-toggle="tooltip" tooltip-text="Szybkie wklejanie pytań z strony kwalifikacja w zawodzie")="Szybkie wprowadzanie"
+            a.button(style="margin-left:20px;" href="/administrator/testy/widok/"+testname data-toggle="tooltip" tooltip-text="Wraca do testu")="Cofnij do testu"
             br
             br
             form(action="/administrator/pytanie/edytuj/"+testname+"/"+testid, method="post")

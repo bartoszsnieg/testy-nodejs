@@ -8,15 +8,17 @@ include ./includes/headAdmin.jade
         div.login-wrap
             div.title-page="Nazwa testu: "+test.name
             if test.ile != 0
-                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/"+test.name)="Rozpocznij"
+                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/"+test.name data-toggle="tooltip" tooltip-text="Umożliwia rozpoczęcie testu w trybie dla uczniów")="Rozpocznij"
             if test.ile != 0
-                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/guestmode/"+test.name)="Rozpocznij test w trybie gościa"
-            a.button(style="margin-right:20px;" href="/administrator/pytanie/dodaj/"+test.name)="Dodaj pytanie"
+                a.button(style="margin-right:20px;" href="/administrator/rozpocznij/test/guestmode/"+test.name data-toggle="tooltip" tooltip-text="Umożliwia rozpoczęcie testu w trybie gościa")="Rozpocznij test w trybie gościa"
+                
+            a.button(style="margin-right:20px;" href="/administrator/pytanie/dodaj/"+test.name data-toggle="tooltip" tooltip-text="Otwiera stronę z możliwością dodawania pytań do aktualnego testu")="Dodaj pytanie"
             if test.edit == 0
-                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/true")="Udostępnij dodawanie pytań uczniom"
+                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/true" data-toggle="tooltip" tooltip-text="Umożliwia dodawanie pytań przez uczniom")="Udostępnij dodawanie pytań uczniom"
             else
-                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/false")="Zablokuj dodawanie pytań uczniom"
-            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name)="Usuń test"
+                a.button(style="margin-right:20px;" href="/administrator/test/edit/"+test.name+"/false" data-toggle="tooltip" tooltip-text="Blokuje możliwość dodawania pytań uczniom")="Zablokuj dodawanie pytań uczniom"
+            a.button(style="margin-right:20px;" href="/administrator/test/usun/"+test.name data-toggle="tooltip" tooltip-text="Umożliwia usunięcie całego testu")="Usuń test"
+                
             br
             br
             if query
@@ -72,11 +74,11 @@ include ./includes/headAdmin.jade
                                     input(type="radio", name="odp"+i disabled)
                                     span=data.odpD
                         br
-                        a.button(style="margin-right:20px;" href="/administrator/pytanie/edytuj/"+test.name+"/"+data.id)="Edytuj"
-                        a.button(style="margin-right:20px;" href="/administrator/pytanie/usun/"+test.name+"/"+data.id)="Usuń"
+                        a.button(style="margin-right:20px;" href="/administrator/pytanie/edytuj/"+test.name+"/"+data.id data-toggle="tooltip" tooltip-text="Otwiera stronę do edycji wybranego pytania")="Edytuj"
+                        a.button(style="margin-right:20px;" href="/administrator/pytanie/usun/"+test.name+"/"+data.id data-toggle="tooltip" tooltip-text="Usuwa wybrane pytanie z testu")="Usuń"
                         span.autor
                             |Autor: 
-                            a(href="/administrator/pytania/autor/"+data.autorAdres)=data.autor
+                            a(href="/administrator/pytania/autor/"+data.autorAdres data-toggle="tooltip" tooltip-text="Pokazuje wszystkie pytania dodane przez użytkownika o nazwie: \""+data.autor+"\"")=data.autor
                         div(style="clear:both;")
                 else
                     div.null
@@ -98,3 +100,5 @@ include ./includes/headAdmin.jade
             br
             span#closeA.button="Zamknij"
         script(src="/js/admin/powiadomienie.js")
+    
+    

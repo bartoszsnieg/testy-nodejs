@@ -5,6 +5,8 @@ window.onload = ()=>{
     let nuberList = document.getElementById("number");
     let bodyP = document.getElementById("pytanieBody");
     $.post("/guestmode/get/egzamin",{},(data)=>{
+        if(data ==null)
+        window.location.href="/logowanie/guest";
         test = data;
        // console.log(data)
     }).then(()=>{

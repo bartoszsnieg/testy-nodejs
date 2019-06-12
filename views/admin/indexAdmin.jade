@@ -2,5 +2,33 @@ include ./includes/headAdmin.jade
     body
     include ./includes/menuAdmin.jade
     block content
+        div#body.login-wrap()
+            div.title-page="Kilka wskazówek które mogą się przydać"
+            div.wskazBody
+                ol
+                    li 
+                        span.titleWskaz="Zmiana hasła administratora:"
+                        div.contentWskaz="Najedź na \"Profil\" nazstępnie rozwinie się lista i wybierz przycisk \"Zmiana hasła\""
+                    li 
+                        span.titleWskaz="Dodawanie nowego testu:"
+                        div.contentWskaz="Najedź na \"Testy\" nazstępnie rozwinie się lista i wybierz przycisk \"Dodaj test\" ,a następnie wprowadz unikalną nazwę dla testu"
+                    li 
+                        span.titleWskaz="Wyświetlanie listy dostępnych testów:"
+                        div.contentWskaz="Kliknij w \"Testy\" nazstępnie pokaże się lista dostępnych testów.\n Aby wyszukać test po nazwie wprowadź w pole o nazwie Nazwa testu a następnie naciśnij przycisk \"Szukaj\""                   
+                    li 
+                        span.titleWskaz="Wyświetlanie listy aktualnie rozpoczetych testów:"
+                        div.contentWskaz="Najedź na \"Testy\" nazstępnie rozwinie się lista i wybierz przycisk \"Aktualne testy\" ,a następnie wyświetlą się aktualnie przeprowadzane testy. Z tego miejsca mozna zobaczyć aktualne wyniki uczniów.  Wyniki trzeba samemu odświerzać !!!!!"                   
+                     li 
+                        span.titleWskaz="Wyświetlanie wyników testów:"
+                        div.contentWskaz="Kliknij w \"Wyniki\" nazstępnie pokaże się lista dostępnych wyników.\n Aby zobaczyć szczegóły kliknij w \"Widok\""
+                     li 
+                        span.titleWskaz="Usuwanie aktualnie rozpoczętych testów:"
+                        div.contentWskaz="Najedź na \"Testy\" następnie rozwinie się lista i wybierz przycisk \"Aktualne testy\" ,a następnie wyświetlą się aktualnie przeprowadzane testy ,w tym miejscu należy kliknąć w przycisk zakończ który zakończy wybrany test. Ważne nie usunie to wyników!!!"                  
+                     li 
+                        span.titleWskaz="Usuwanie aktualnie rozpoczętych testów:"
+                        div.contentWskaz="Kliknij w \"Wyniki\" nazstępnie pokaże się lista dostępnych wyników.\n Aby usunąć usunąć wybrany zestaw wyników kliknij przycisk \"Usuń\""    
+                     li 
+                        span.titleWskaz="Tryb gościa:"
+                        div.contentWskaz="Jest to tryb w którym użytkownik ma możliwość tylko odpowiadania na jeden test. Link do logowania dla sesji gościa: \"/logowanie/guest\""           
         div(class="stopka")="© 2019 - Bartosz Śnieg"
     

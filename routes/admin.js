@@ -5,6 +5,8 @@ var router = express.Router();
 let error =  require("../class/error.js");
 let test = require("../class/test.js");
 let pytanie = require("../class/pytanieClass.js");
+
+var fs = require('fs');
 const  { fork }  = require('child_process');
 let LocalID =1;
 let testList =[];
@@ -217,7 +219,7 @@ wyniki = list
         mysql.query("SELECT * FROM `testy` WHERE `name`='"+req.params.name+"'",(err,data)=>{
             if(!err)
             {
-                res.render('admin/testSelect',{name: "Admin",alert:q,nameTest: req.params.name,maxL: data[0].ile});
+                res.render('admin/testSelect',{name: "Admin",alert:q,nameTest: req.params.name,maxL: data[0].ile-1});
             }
             else
             {
@@ -235,7 +237,7 @@ wyniki = list
         mysql.query("SELECT * FROM `testy` WHERE `name`='"+req.params.name+"'",(err,data)=>{
             if(!err)
             {
-                res.render('admin/testSelectGuestmode',{name: "Admin",alert:q,nameTest: req.params.name,maxL: data[0].ile});
+                res.render('admin/testSelectGuestmode',{name: "Admin",alert:q,nameTest: req.params.name,maxL: data[0].ile-1});
             }
             else
             {
@@ -325,6 +327,8 @@ wyniki = list
     router.post("/administrator/pytanie/dodaj/:name",(req,res)=>{
         let id;
         mysql.query("SELECT id FROM `testy` WHERE `name`='"+req.params.name+"'",(err,data)=>{
+            //console.log(req.files.img2);
+            //console.log(req.body.tresc)
             if(err)
                 eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator 1: "+req.url));
             if(req.session.name == "" || !req.session.name)
@@ -357,6 +361,17 @@ wyniki = list
                                             eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator: (dodawanie img do zdjęcia)"+req.url));
                                         })
                                     });
+                                }
+                                if(Object.keys(req.files).length != 0)
+                                {
+                                    console.log(true)
+                                    let sampleFile = req.files.img2;
+                                    sampleFile.mv(__dirname.substring(0,__dirname.indexOf("\\routes"))+'/public/testy-img/'+req.params.name+"-"+data.insertId+sampleFile.name, function(err) {console.log(err)})
+                                    let query = "UPDATE `pytania` SET `imgW`="+0+",`imgH`="+0+",`imgSrc`='"+req.params.name+"-"+data.insertId+sampleFile.name+"' WHERE `id`="+data.insertId;
+                                    mysql.query(query,(err,data)=>{
+                                        if(err)
+                                        eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator: (dodawanie img do zdjęcia)"+req.url));
+                                    })
                                 }
                                
                             }else

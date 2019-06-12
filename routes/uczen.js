@@ -196,6 +196,17 @@ router.post("/uczen/pytanie/dodaj/:name",(req,res)=>{
                                         })
                                     });
                                 }
+                                if(Object.keys(req.files).length != 0)
+                                {
+                                    console.log(true)
+                                    let sampleFile = req.files.img2;
+                                    sampleFile.mv(__dirname.substring(0,__dirname.indexOf("\\routes"))+'/public/testy-img/'+req.params.name+"-"+data.insertId+sampleFile.name, function(err) {console.log(err)})
+                                    let query = "UPDATE `pytania` SET `imgW`="+0+",`imgH`="+0+",`imgSrc`='"+req.params.name+"-"+data.insertId+sampleFile.name+"' WHERE `id`="+data.insertId;
+                                    mysql.query(query,(err,data)=>{
+                                        if(err)
+                                        eventList.error_List.push(new error("Błąd bazy danych "+err,"MYSQL - administrator: (dodawanie img do zdjęcia)"+req.url));
+                                    })
+                                }
                             }else
                             {
                                 req.session.addPError = "Coś poszło nie tak!!";

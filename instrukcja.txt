@@ -1,0 +1,10 @@
+Przed uruchomieniem serwera nalży uruchomić serwer mysql!!!!!!
+Aby uruchomić serwer należy uruchomić aplikacje o nazwie Start.exe
+
+logowanie:
+
+/-logowanie dla trybu ucznia
+
+/logowanie/administrator - logowanie dla administratora
+
+/logowanie/guest - logowanie dla trybu goscia
